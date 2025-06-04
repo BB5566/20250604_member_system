@@ -13,7 +13,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <nav>
       <a href="index.php">首頁</a>
       <a href="#">熱門主題</a>
-      <a href="#">發表文章</a>
+      <a href="./new_post.php">發表文章</a>
       <a href="member_center.php">會員中心</a>
     </nav>
     <div class="header-user">

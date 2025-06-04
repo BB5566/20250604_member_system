@@ -11,36 +11,44 @@
 <body>
   
   <?php include 'header.php'; ?>
-
+  <?php
+  require_once 'db_connect.php';
+  $category = $_GET['category'] ?? '';
+  $sql = "SELECT posts.*, members.nickname FROM posts JOIN members ON posts.author_id = members.id";
+  if ($category && in_array($category, ['台灣小吃','異國料理','甜點飲品','素食專區','其他'])) {
+    $sql .= " WHERE posts.category = '" . $conn->real_escape_string($category) . "'";
+  }
+  $sql .= " ORDER BY created_at DESC";
+  $result = $conn->query($sql);
+  ?>
   <main class="forum-main container">
     <aside class="forum-sidebar">
       <h2>分類</h2>
       <ul>
-        <li><a href="#">台灣小吃</a></li>
-        <li><a href="#">異國料理</a></li>
-        <li><a href="#">甜點飲品</a></li>
-        <li><a href="#">素食專區</a></li>
-        <li><a href="#">其他</a></li>
+        <li><a href="index.php">全部</a></li>
+        <li><a href="?category=台灣小吃">台灣小吃</a></li>
+        <li><a href="?category=異國料理">異國料理</a></li>
+        <li><a href="?category=甜點飲品">甜點飲品</a></li>
+        <li><a href="?category=素食專區">素食專區</a></li>
+        <li><a href="?category=其他">其他</a></li>
       </ul>
     </aside>
     <section class="forum-content">
-      <div class="post-card">
-        <h3>【台北】必吃牛肉麵推薦</h3>
-        <p>分享台北幾家超好吃的牛肉麵店，歡迎大家補充！</p>
-        <div class="post-meta">by 小明 | 2025-06-04</div>
-      </div>
-      <div class="post-card">
-        <h3>【高雄】鹽酥雞哪家最強？</h3>
-        <p>高雄的鹽酥雞攤超多，大家有推薦的嗎？</p>
-        <div class="post-meta">by 小美 | 2025-06-03</div>
-      </div>
-      <div class="post-card">
-        <h3>【新竹】米粉湯大評比</h3>
-        <p>新竹米粉湯哪家最好喝？來投票吧！</p>
-        <div class="post-meta">by 阿志 | 2025-06-02</div>
-      </div>
+      <?php if ($result && $result->num_rows > 0): ?>
+        <?php while($row = $result->fetch_assoc()): ?>
+          <div class="post-card">
+            <h3><?= htmlspecialchars($row['title']) ?></h3>
+            <div style="color:#ffd54f;font-size:0.98rem;margin-bottom:6px;">[<?= htmlspecialchars($row['category']) ?>]</div>
+            <p><?= $row['content'] ?></p>
+            <div class="post-meta">by <?= htmlspecialchars($row['nickname']) ?> | <?= htmlspecialchars(date('Y-m-d', strtotime($row['created_at']))) ?></div>
+          </div>
+        <?php endwhile; ?>
+      <?php else: ?>
+        <div class="post-card">目前尚無文章，歡迎發表第一篇！</div>
+      <?php endif; ?>
     </section>
   </main>
+  <?php $conn->close(); ?>
   <?php include 'footer.php'; ?>
 </body>
 
