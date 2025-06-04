@@ -31,19 +31,21 @@ try {
 <body>
 <?php include 'header.php';?>
   <main class="forum-main container">
-    <section class="member-info" style="max-width:500px;margin:0 auto;background:#fffde7;padding:32px 24px;border-radius:14px;box-shadow:0 2px 12px rgba(0,0,0,0.06);border-left:7px solid #ffb74d;">
-      <h2 style="color:#ff9800;">會員中心</h2>
-      <?php if ($member): ?>
-        <ul style="list-style:none;padding:0;font-size:1.1rem;">
-          <li><strong>會員ID：</strong> <?= htmlspecialchars($member['id']) ?></li>
-          <li><strong>帳號：</strong> <?= htmlspecialchars($member['username']) ?></li>
-          <li><strong>暱稱：</strong> <?= htmlspecialchars($member['nickname']) ?></li>
-          <li><strong>電子郵件：</strong> <?= htmlspecialchars($member['email']) ?></li>
-          <li><strong>生日：</strong> <?= htmlspecialchars($member['birthday']) ?></li>
-        </ul>
-      <?php else: ?>
-        <div style="color:red;">無法取得會員資料，請稍後再試。</div>
-      <?php endif; ?>
+    <section class="forum-content">
+      <div class="post-card" style="max-width:520px;margin:0 auto;">
+        <h2 style="color:#ffd54f;font-weight:800;letter-spacing:1px;margin-bottom:18px;">會員中心</h2>
+        <?php if ($member): ?>
+          <ul style="list-style:none;padding:0;font-size:1.13rem;line-height:2;">
+            <li><strong>會員ID：</strong> <?= htmlspecialchars($member['id']) ?></li>
+            <li><strong>帳號：</strong> <?= htmlspecialchars($member['username']) ?></li>
+            <li><strong>暱稱：</strong> <?= htmlspecialchars($member['nickname']) ?></li>
+            <li><strong>電子郵件：</strong> <?= htmlspecialchars($member['email']) ?></li>
+            <li><strong>生日：</strong> <?= htmlspecialchars($member['birthday']) ?></li>
+          </ul>
+        <?php else: ?>
+          <div style="color:#d32f2f;">無法取得會員資料，請稍後再試。</div>
+        <?php endif; ?>
+      </div>
     </section>
   </main>
 <?php
