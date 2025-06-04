@@ -1,0 +1,339 @@
+/* styles.css - 專業美食論壇主題，現代感、易讀性佳，適合台灣用戶 */
+body {
+  font-family: 'Noto Sans TC', 'Microsoft JhengHei', Arial, sans-serif;
+  background: linear-gradient(135deg, #fff8e1 0%, #ffe0b2 100%);
+  margin: 0;
+  color: #2d2d2d;
+  min-height: 100vh;
+}
+.container {
+  width: 92%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.forum-header {
+  background: linear-gradient(90deg, #ffb74d 60%, #ff9800 100%);
+  color: #fff;
+  padding: 24px 0 12px 0;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+  border-bottom-left-radius: 18px;
+  border-bottom-right-radius: 18px;
+}
+.forum-header h1 {
+  margin: 0 0 12px 0;
+  font-size: 2.5rem;
+  letter-spacing: 3px;
+  font-weight: 900;
+  text-shadow: 1px 2px 8px rgba(0,0,0,0.08);
+}
+.forum-header nav {
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+.forum-header nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.08rem;
+  padding: 6px 18px;
+  border-radius: 6px;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+.forum-header nav a:hover, .forum-header nav a.active {
+  background: #fff3e0;
+  color: #ff9800;
+  box-shadow: 0 2px 8px rgba(255,183,77,0.15);
+}
+.forum-main {
+  display: flex;
+  gap: 36px;
+  margin: 38px 0 0 0;
+}
+.forum-sidebar {
+  background: #fff3e0;
+  padding: 28px 18px;
+  border-radius: 14px;
+  min-width: 200px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  border: 1.5px solid #ffe0b2;
+}
+.forum-sidebar h2 {
+  margin-top: 0;
+  font-size: 1.18rem;
+  color: #ff9800;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+.forum-sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.forum-sidebar li {
+  margin-bottom: 16px;
+}
+.forum-sidebar a {
+  color: #6d4c41;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.05rem;
+  border-radius: 4px;
+  padding: 3px 8px;
+  transition: background 0.2s, color 0.2s;
+}
+.forum-sidebar a:hover, .forum-sidebar a.active {
+  background: #ffb74d;
+  color: #fff;
+}
+.forum-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+.forum-slidebar {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: #ffe0b2;
+  border-radius: 10px;
+  padding: 14px 22px;
+  margin-bottom: 22px;
+  font-size: 1.12rem;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+}
+.forum-slidebar span {
+  color: #8d6e63;
+  font-weight: bold;
+  font-size: 1.08rem;
+}
+.forum-slidebar a {
+  color: #6d4c41;
+  text-decoration: none;
+  padding: 5px 14px;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: background 0.2s, color 0.2s;
+}
+.forum-slidebar a:hover, .forum-slidebar a.active {
+  background: #ffb74d;
+  color: #fff;
+}
+.post-card {
+  background: #fffde7;
+  border-radius: 14px;
+  padding: 28px 24px 20px 24px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  border-left: 7px solid #ffb74d;
+  transition: box-shadow 0.2s;
+}
+.post-card:hover {
+  box-shadow: 0 6px 24px rgba(255,183,77,0.13);
+}
+.post-card h3 {
+  margin-top: 0;
+  color: #ff9800;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.post-card p {
+  margin: 12px 0 10px 0;
+  font-size: 1.08rem;
+  line-height: 1.7;
+}
+.post-meta {
+  font-size: 0.98rem;
+  color: #8d6e63;
+  text-align: right;
+  margin-top: 8px;
+}
+.forum-footer {
+  background: linear-gradient(90deg, #ffb74d 60%, #ff9800 100%);
+  color: #fff;
+  text-align: center;
+  padding: 22px 0 18px 0;
+  margin-top: 48px;
+  font-size: 1.05rem;
+  letter-spacing: 1.2px;
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+  box-shadow: 0 -2px 12px rgba(0,0,0,0.04);
+}
+::-webkit-scrollbar {
+  width: 10px;
+  background: #ffe0b2;
+}
+::-webkit-scrollbar-thumb {
+  background: #ffb74d;
+  border-radius: 6px;
+}
+@media (max-width: 900px) {
+  .forum-main {
+    flex-direction: column;
+    gap: 0;
+  }
+  .forum-sidebar {
+    min-width: 0;
+    margin-bottom: 24px;
+  }
+}
+@media (max-width: 600px) {
+  .container {
+    width: 99%;
+    padding: 0 2px;
+  }
+  .forum-header h1 {
+    font-size: 1.5rem;
+  }
+  .forum-header nav {
+    gap: 10px;
+  }
+  .forum-sidebar {
+    padding: 16px 8px;
+  }
+  .forum-slidebar {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 8px 6px;
+    font-size: 1rem;
+  }
+  .post-card {
+    padding: 14px 8px 10px 8px;
+  }
+  .forum-footer {
+    font-size: 0.95rem;
+    padding: 12px 0 10px 0;
+  }
+}
+
+/* 會員註冊表單專用 CSS，專業現代感設計 */
+.register-form {
+  background: #fffde7;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  padding: 38px 32px 28px 32px;
+  max-width: 420px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  border-left: 7px solid #ffb74d;
+}
+.register-form h2 {
+  text-align: center;
+  color: #ff9800;
+  margin-bottom: 18px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+.register-form div {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.register-form label {
+  font-weight: 600;
+  color: #6d4c41;
+  margin-bottom: 2px;
+  font-size: 1.05rem;
+}
+.register-form input[type="text"],
+.register-form input[type="password"],
+.register-form input[type="email"],
+.register-form input[type="date"] {
+  padding: 10px 12px;
+  border: 1.5px solid #ffe0b2;
+  border-radius: 6px;
+  font-size: 1.05rem;
+  background: #fff;
+  transition: border 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+.register-form input:focus {
+  border: 1.5px solid #ffb74d;
+  box-shadow: 0 0 0 2px #ffe0b2;
+}
+.register-form button[type="submit"],
+.register-form button[type="reset"] {
+  padding: 10px 0;
+  width: 48%;
+  font-size: 1.08rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #ffb74d 60%, #ff9800 100%);
+  color: #fff;
+  cursor: pointer;
+  margin-right: 2%;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(255,183,77,0.08);
+}
+.register-form button[type="reset"] {
+  background: #ffe0b2;
+  color: #6d4c41;
+  margin-right: 0;
+}
+.register-form button[type="submit"]:hover {
+  background: #ff9800;
+  box-shadow: 0 4px 16px rgba(255,183,77,0.18);
+}
+.register-form button[type="reset"]:hover {
+  background: #ffb74d;
+  color: #fff;
+}
+.register-form div:last-child {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 0;
+  margin-top: 10px;
+}
+@media (max-width: 600px) {
+  .register-form {
+    padding: 18px 4px 14px 4px;
+    max-width: 99%;
+  }
+  .register-form button[type="submit"],
+  .register-form button[type="reset"] {
+    font-size: 1rem;
+    padding: 8px 0;
+  }
+}
+
+/* HEADER LOGO大小與尺寸 */
+/* Header logo 調整 */
+.forum-header .container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.forum-header img {
+  height: 56px;         /* 適合大多數 header 的高度 */
+  width: auto;
+  display: block;
+  margin-right: 12px;
+}
+
+.forum-header h1 {
+  font-size: 2.2rem;
+  margin: 0 24px 0 0;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+@media (max-width: 600px) {
+  .forum-header img {
+    height: 40px;
+    margin-right: 8px;
+  }
+  .forum-header h1 {
+    font-size: 1.3rem;
+    margin-right: 8px;
+  }
+  .forum-header .container {
+    gap: 10px;
+  }
+}
