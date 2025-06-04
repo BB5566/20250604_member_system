@@ -205,6 +205,53 @@ input:focus, textarea:focus, select:focus {
   width: auto;
   margin-right: 8px;
 }
+.form-title {
+  color: #ffd54f;
+  text-align: center;
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin-bottom: 18px;
+  font-size: 1.5rem;
+}
+.login-section.post-card {
+  max-width: 400px;
+  margin: 0 auto;
+}
+.error-message {
+  color: #d32f2f;
+  background: rgba(255,255,255,0.10);
+  padding: 10px 0;
+  border-radius: 6px;
+  text-align: center;
+  margin-bottom: 18px;
+  font-weight: 600;
+}
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.login-form label {
+  font-weight: 600;
+  color: #ffd54f;
+  font-size: 1.05rem;
+  margin-bottom: 2px;
+}
+.login-form input[type="text"],
+.login-form input[type="password"] {
+  padding: 10px 12px;
+  border: 1.5px solid #ffd54f;
+  border-radius: 6px;
+  font-size: 1.05rem;
+  background: rgba(255,255,255,0.10);
+  color: #f5f5f5;
+  transition: border 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+.login-form input:focus {
+  border: 1.5px solid #ffb300;
+  box-shadow: 0 0 0 2px #ffd54f;
+}
 @media (max-width: 600px) {
   .header-logo-title img {
     height: 28px;
@@ -220,4 +267,6 @@ input:focus, textarea:focus, select:focus {
   .forum-slidebar { flex-wrap: wrap; gap: 10px; padding: 8px 6px; font-size: 1rem; }
   .post-card { padding: 14px 8px 10px 8px; }
   .forum-footer { font-size: 0.95rem; padding: 12px 0 10px 0; }
+  .login-section.post-card { padding: 14px 8px 10px 8px; }
+  .form-title { font-size: 1.1rem; }
 }
