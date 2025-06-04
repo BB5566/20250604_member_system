@@ -42,7 +42,11 @@ while ($row = $result_c->fetch_assoc()) {
     <div style="color:#ffd54f;font-size:0.98rem;margin-bottom:6px;">[<?= htmlspecialchars($post['category']) ?>]</div>
     <div class="post-meta">by <?= htmlspecialchars($post['nickname']) ?> | <?= htmlspecialchars(date('Y-m-d', strtotime($post['created_at']))) ?></div>
     <?php if (!empty($post['image'])): ?>
-      <img src="uploads/<?= htmlspecialchars($post['image']) ?>" alt="文章圖片" class="post-image">
+      <?php if (strpos($post['image'], 'data:image/') === 0): ?>
+        <img src="<?= $post['image'] ?>" alt="文章圖片" class="post-image">
+      <?php else: ?>
+        <img src="uploads/<?= htmlspecialchars($post['image']) ?>" alt="文章圖片" class="post-image">
+      <?php endif; ?>
     <?php endif; ?>
     <p><?= $post['content'] ?></p>
   </div>

@@ -18,16 +18,29 @@ $content = trim($_POST['content'] ?? '');
 $category = trim($_POST['category'] ?? '');
 $author_id = $_SESSION['user_id'];
 
+// 圖片處理
+$image_name = '';
+if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+    $ext = strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION));
+    $allow_ext = ['jpg','jpeg','png','gif','webp'];
+    if (in_array($ext, $allow_ext)) {
+        $image_name = uniqid('img_', true) . '.' . $ext;
+        $target = '../uploads/' . $image_name;
+        if (!move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
+            $image_name = '';
+        }
+    }
+}
+
 if ($title === '' || $content === '' || $category === '') {
     echo '請填寫所有欄位。';
     exit();
 }
 
 // 寫入資料庫
-require_once '../db_connect.php';
-$sql = "INSERT INTO posts (title, content, category, author_id) VALUES (?, ?, ?, ?)";
+$sql = "INSERT INTO posts (title, content, category, author_id, image) VALUES (?, ?, ?, ?, ?)";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param('sssi', $title, $content, $category, $author_id);
+$stmt->bind_param('sssis', $title, $content, $category, $author_id, $image_name);
 if ($stmt->execute()) {
     header('Location: ../index.php');
     exit();
