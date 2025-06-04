@@ -1,6 +1,6 @@
 Array
 (
-    [title] => TEST
+    [title] => 555
     [category] => 台灣小吃
-    [content] => <p><strong>TEST</strong></p>
+    [content] => <ol><li>1</li><li>2</li><li>3</li><li>4</li></ol>
 )

@@ -37,7 +37,7 @@
       <?php if ($result && $result->num_rows > 0): ?>
         <?php while($row = $result->fetch_assoc()): ?>
           <div class="post-card">
-            <h3><?= htmlspecialchars($row['title']) ?></h3>
+            <h3><a href="post_detail.php?id=<?= $row['id'] ?>"><?= htmlspecialchars($row['title']) ?></a></h3>
             <div style="color:#ffd54f;font-size:0.98rem;margin-bottom:6px;">[<?= htmlspecialchars($row['category']) ?>]</div>
             <p><?= $row['content'] ?></p>
             <div class="post-meta">by <?= htmlspecialchars($row['nickname']) ?> | <?= htmlspecialchars(date('Y-m-d', strtotime($row['created_at']))) ?></div>
