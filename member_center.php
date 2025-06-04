@@ -33,18 +33,52 @@ try {
   <main class="forum-main container">
     <section class="forum-content">
       <div class="post-card" style="max-width:520px;margin:0 auto;">
-        <h2 style="color:#ffd54f;font-weight:800;letter-spacing:1px;margin-bottom:18px;">會員中心</h2>
-        <?php if ($member): ?>
-          <ul style="list-style:none;padding:0;font-size:1.13rem;line-height:2;">
-            <li><strong>會員ID：</strong> <?= htmlspecialchars($member['id']) ?></li>
-            <li><strong>帳號：</strong> <?= htmlspecialchars($member['username']) ?></li>
-            <li><strong>暱稱：</strong> <?= htmlspecialchars($member['nickname']) ?></li>
-            <li><strong>電子郵件：</strong> <?= htmlspecialchars($member['email']) ?></li>
-            <li><strong>生日：</strong> <?= htmlspecialchars($member['birthday']) ?></li>
-          </ul>
-        <?php else: ?>
-          <div style="color:#d32f2f;">無法取得會員資料，請稍後再試。</div>
-        <?php endif; ?>
+        <div class="member-center-section">
+          <h2>會員中心</h2>
+          <?php if ($member): ?>
+            <ul class="member-info">
+              <li><strong>會員ID：</strong> <?= htmlspecialchars($member['id']) ?></li>
+              <li><strong>帳號：</strong> <?= htmlspecialchars($member['username']) ?></li>
+              <li><strong>暱稱：</strong> <?= htmlspecialchars($member['nickname']) ?></li>
+              <li><strong>電子郵件：</strong> <?= htmlspecialchars($member['email']) ?></li>
+              <li><strong>生日：</strong> <?= htmlspecialchars($member['birthday']) ?></li>
+            </ul>
+            <hr>
+            <h3>我發表的文章</h3>
+            <?php
+              $stmt2 = $pdo->prepare("SELECT id, title, created_at FROM posts WHERE author_id = :uid ORDER BY created_at DESC");
+              $stmt2->execute(['uid' => $member['id']]);
+              $my_posts = $stmt2->fetchAll();
+            ?>
+            <?php if ($my_posts): ?>
+              <ul class="article-list">
+                <?php foreach ($my_posts as $p): ?>
+                  <li><a href="post_detail.php?id=<?= $p['id'] ?>">[<?= htmlspecialchars(date('Y-m-d', strtotime($p['created_at']))) ?>] <?= htmlspecialchars($p['title']) ?></a></li>
+                <?php endforeach; ?>
+              </ul>
+            <?php else: ?>
+              <div class="empty-tip">尚未發表任何文章</div>
+            <?php endif; ?>
+            <hr>
+            <h3>我留言過的文章</h3>
+            <?php
+              $stmt3 = $pdo->prepare("SELECT DISTINCT posts.id, posts.title, posts.created_at FROM comments JOIN posts ON comments.post_id = posts.id WHERE comments.member_id = :uid ORDER BY posts.created_at DESC");
+              $stmt3->execute(['uid' => $member['id']]);
+              $commented_posts = $stmt3->fetchAll();
+            ?>
+            <?php if ($commented_posts): ?>
+              <ul class="article-list">
+                <?php foreach ($commented_posts as $p): ?>
+                  <li><a href="post_detail.php?id=<?= $p['id'] ?>">[<?= htmlspecialchars(date('Y-m-d', strtotime($p['created_at']))) ?>] <?= htmlspecialchars($p['title']) ?></a></li>
+                <?php endforeach; ?>
+              </ul>
+            <?php else: ?>
+              <div class="empty-tip">尚未留言過任何文章</div>
+            <?php endif; ?>
+          <?php else: ?>
+            <div style="color:#d32f2f;">無法取得會員資料，請稍後再試。</div>
+          <?php endif; ?>
+        </div>
       </div>
     </section>
   </main>

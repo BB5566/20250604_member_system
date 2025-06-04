@@ -41,6 +41,9 @@ while ($row = $result_c->fetch_assoc()) {
     <h2><?= htmlspecialchars($post['title']) ?></h2>
     <div style="color:#ffd54f;font-size:0.98rem;margin-bottom:6px;">[<?= htmlspecialchars($post['category']) ?>]</div>
     <div class="post-meta">by <?= htmlspecialchars($post['nickname']) ?> | <?= htmlspecialchars(date('Y-m-d', strtotime($post['created_at']))) ?></div>
+    <?php if (!empty($post['image'])): ?>
+      <img src="uploads/<?= htmlspecialchars($post['image']) ?>" alt="文章圖片" class="post-image">
+    <?php endif; ?>
     <p><?= $post['content'] ?></p>
   </div>
   <hr>
@@ -54,10 +57,10 @@ while ($row = $result_c->fetch_assoc()) {
         </div>
       <?php endforeach; ?>
     <?php else: ?>
-      <div>目前尚無留言，歡迎搶頭香！</div>
+      <div class="empty-tip">目前尚無留言，歡迎搶頭香！</div>
     <?php endif; ?>
     <hr>
-    <h4>發表回覆</h4>
+    <h4 style="color:#ffd54f;">發表回覆</h4>
     <form action="api/add_comment.php" method="post">
       <input type="hidden" name="post_id" value="<?= $post['id'] ?>">
       <textarea name="content" rows="3" required placeholder="輸入留言內容..."></textarea><br>
